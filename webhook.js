@@ -11,9 +11,6 @@ const VALID_SECRET = process.env.SECRET_TOKEN;
 
 app.post('/webhook', (req, res) => {
     const auth_header = req.headers.authorization;
-    console.log("----------")
-    console.log(auth_header)
-    console.log("----------")
     if (auth_header && auth_header.startsWith("Bearer ")) {
         const token = auth_header.substring(7);
         console.log(token === VALID_SECRET)

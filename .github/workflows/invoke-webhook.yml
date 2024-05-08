@@ -17,8 +17,8 @@ jobs:
       - name: Invoke deployment hook
         uses: distributhor/workflow-webhook@v3
         with:
-          webhook_url: "http://localhost:80/webhook"
-            webhook_secret: "secret"
+          webhook_url: "http://webhookcontainer/webhook"
+          webhook_auth: "${{ secrets.webhooktoken }}"
           # je zal nog twee waarden moeten instellen
           # zie https://github.com/marketplace/actions/workflow-webhook-action#arguments
           webhook_auth_type: "bearer"
