@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # dit is iets gebruiksvriendelijker
+      # maar je kan eigenlijk ook gewoon een POST request doen met curl!
+      - name: Invoke deployment hook
+        uses: distributhor/workflow-webhook@v3
+        with:
+          webhook_url: "http://localhost:80/webhook"
+            webhook_secret: "secret"
+          # je zal nog twee waarden moeten instellen
+          # zie https://github.com/marketplace/actions/workflow-webhook-action#arguments
+          webhook_auth_type: "bearer"
